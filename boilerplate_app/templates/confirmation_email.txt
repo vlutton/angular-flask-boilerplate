@@ -1,0 +1,5 @@
+Dear {{user.username}},
+
+Please click on the following link to activate your account:
+
+{{confirmation_url}}
