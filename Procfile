@@ -1,2 +1,2 @@
-web: gunicorn boilerplat_app:app
+web: gunicorn boilerplate_app:app
 init: python create_db.py
