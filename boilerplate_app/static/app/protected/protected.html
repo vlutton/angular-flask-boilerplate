@@ -1,0 +1,69 @@
+<div class='container bg-white'>
+	<div class='row'>
+		<div class='col-sm-8 col-sm-offset-2'>
+			<h2>Protected Data</h2>
+			<span ng-if="protected.noData">There is no data to show!</span>
+			<table class='table'>
+				<thead>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Actions</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in protected.protectedData">
+						<td class='col-xs-3'>
+							<span>{{data.name}}</span>
+						</td>
+						<td class='col-xs-6'>
+							<span>{{data.description}}</span>
+						</td>
+						<td class='col-xs-3'>
+							<div class="btn-group" role="group">
+							  <button role='button' class='btn btn-info' ng-click="protected.openEditDialog(data, $index)" 
+							  data-toggle="modal" href="#editModal">
+							  	<span class="glyphicon glyphicon-edit"></span>
+							  </button>
+							  <button type="button" class="btn btn-danger" ng-click="protected.deleteResource(data, $index)">
+							  	<span class="glyphicon glyphicon-trash"></span>
+							  </button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="alert alert-danger" ng-if="protected.error">
+				<h3>{{protected.errorHeading}}</h3>
+				<p>{{protected.errorDescription}}</p>
+			</div>
+		</div>
+	</div>
+	<hr />
+	<div ng-if="!protected.error" class='row'>
+		<div class='col-xs-8 col-xs-offset-2 well'>
+			<form name='addResourceForm' class="form-horizontal" ng-submit="protected.addResource()" novalidate>
+			  <div class="form-group" 
+			  ng-class="{ 'has-error' : addResourceForm.protectedName.$invalid && addResourceForm.protectedName.$touched}">
+			    <label for="protectedName" class="col-sm-2 control-label">Name</label>
+			    <div class="col-sm-10">
+			      <input ng-model="protected.name" type="text" class="form-control" 
+			      	id="protectedName" name="protectedName" 
+			      	placeholder="Enter Name" required>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="protectedDescription" class="col-sm-2 control-label">Description</label>
+			    <div class="col-sm-10">
+			      <textarea class="form-control" id="protectedDescription" 
+			      ng-model="protected.description"
+			      placeholder="Enter Description"></textarea>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" ng-disabled="addResourceForm.$invalid" class="btn btn-primary">Add Resource</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</div>
+</div>

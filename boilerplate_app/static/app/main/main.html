@@ -1,0 +1,12 @@
+<div class="container">
+
+  <div class="jumbotron text-center">
+      <h1>Boilerplate</h1>
+      <h3>Instructions</h3>
+      <p>Create an account and check your email to activate, login, and view the protected data!</p>
+      <p class="animated infinite" ng-class="main.classAnimation">
+      <a ng-if="!vm.isAuthenticated()" ui-sref="auth.login" class="btn btn-lg btn-success">Login!</a>
+      <a ng-if="vm.isAuthenticated()" ui-sref="protected" class="btn btn-lg btn-success">View Data!</a>
+    </p>
+  </div>
+</div>

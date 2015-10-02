@@ -1,0 +1,27 @@
+<div class='modal-header'>
+  <h3 >Edit Protected Resource</h3>
+</div>
+
+<form name='editProtectedForm' class="form-horizontal" ng-submit="vm.updateResource()" novalidate>
+  <div class="form-group" ng-class="{ 'has-error' : editProtectedForm.protectedName.$invalid && editProtectedForm.protectedName.$touched}">
+    <label for="protectedName" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input ng-model="vm.item.name" type="text" class="form-control" 
+        id="protectedName" name="protectedName" value="{{vm.item.name}}"
+        placeholder="Enter Name" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="protectedDescription" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="protectedDescription" 
+      ng-model="vm.item.description"
+      placeholder="Enter Description">{{vm.item.description}}</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" ng-disabled="editProtectedForm.$invalid" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
