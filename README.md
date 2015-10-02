@@ -5,6 +5,7 @@ Angular Flask Boilerplate with the following features:
   - JWT Authentication
   - User registration: send email activation link to activate account
   - Support for content protected by authentication
+
  
 ### Tech
 
