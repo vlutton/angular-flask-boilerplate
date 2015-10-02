@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, abort, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import Security, SQLAlchemyUserDatastore, \
     UserMixin, RoleMixin, login_required, current_user, logout_user
@@ -31,6 +31,8 @@ jwt = JWT(app)
 def authenticate(username, password):
     user = user_datastore.find_user(email=username)
     if user is not None:
+        if not user.is_active():
+            abort(401)
         if username == user.email and user.check_password(password):
             return user
     return None
@@ -49,6 +51,14 @@ app.register_blueprint(registration, url_prefix='/users')
 @app.route('/index')
 def index():
     return render_template("index.html")
+
+@app.errorhandler(401)
+def unauthorized(error):
+    return jsonify({
+        "error": "Unauthorized",
+        "description": "Please check your email to activate your account.",
+        "status_code": 401
+    }), 401
 
 db.create_all()
 db.session.commit()

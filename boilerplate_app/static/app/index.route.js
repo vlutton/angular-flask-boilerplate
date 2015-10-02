@@ -78,7 +78,6 @@
 
   function routeRun($rootScope, $state, AuthService) {
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-      console.log(AuthService.getStorageMethod());
       if (AuthService.getStorageMethod() == "localStorage") {
         var user = JSON.parse(localStorage.getItem('user'));
       } else {
