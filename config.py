@@ -4,9 +4,11 @@ from datetime import timedelta
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
+if os.environ.get('DATABASE_URL') is None:
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/boilerplate'
+else:
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'api.sqlite')
-SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/boilerplate'
 USE_TOKEN_AUTH = True
 
 # mail params
@@ -22,6 +24,9 @@ SECRET_KEY = "super-secret"
 SECURITY_REGISTERABLE = True
 SECURITY_REGISTER_URL = '/auth/register'
 SECURITY_PASSWORD_HASH = 'sha512_crypt'
-SECURITY_PASSWORD_SALT = 'add_salt'
 
+if os.environ.get('BOILERPLATE_SALT') is None:
+    SECURITY_PASSWORD_SALT = 'salt_goes_here'
+else:
+    SECURITY_PASSWORD_SALT = os.environ['BOILERPLATE_SALT']
 JWT_EXPIRATION_DELTA = timedelta(days=3)
