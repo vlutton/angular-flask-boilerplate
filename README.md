@@ -5,6 +5,7 @@ Angular Flask Boilerplate with the following features:
   - JWT Authentication
   - User registration: send email activation link to activate account
   - Support for content protected by authentication
+  - Full RESTful model supported with Create, Read, Update, and Delete functions for the protected data
 
 ### Demo
 The demo for this code can be found here:
